@@ -187,10 +187,10 @@
       </div>
     </div>
     <ul data-role="listview" data-inset="true">
-      <li ng-repeat="item in realTimeData | filter: mySearch | orderBy: sortOrder"><a ng-click="playvideo(item)"> <img ng-src="{{item.thumbnail}}" class="ui-li-thumb">
+      <li ng-repeat="item in realTimeData | filter: mySearch | orderBy: sortOrder"><a ng-click="playvideo(item.custom_fields)"> <img ng-src="{{item.thumbnail}}" class="ui-li-thumb">
         <h2 ng-bind-html="item.title | unsafe "></h2>
         <p ng-bind-html="item.content | unsafe "></p>
-        <p class="ui-li-aside">{{item.categories[0].title}}</p>
+        <p class="ui-li-aside">{{getcategory(item.categories)}}</p>
         </a></li>
     </ul>
   </div>
@@ -211,7 +211,7 @@
 <!-- Start of watch video page -->
 <div data-role="page" data-theme="b" id="watch" >
   <div role="main" class="ui-content">
-    <div id="ytplayer" class="video-container"><script type="text/javascript" src="http://content.jwplatform.com/players/7unyO9BE-xHSncDUr.js"></script></div>
+    <div id="ytplayer" class="video-container"><script type="text/javascript" src="http://content.jwplatform.com/players/7unyO9BE-xHSncDUr.js"></script></div><a href="#" id="remove">DELETE</a>
   </div>
 </div>
 <!-- /watch video page -->
