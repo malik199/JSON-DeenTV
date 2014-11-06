@@ -20,16 +20,18 @@
 		
 		//play the video
         $scope.playvideo = function(currentItem) {
-            if (currentItem.dp_video_code) {
-                var str = currentItem.dp_video_code.toString();
+            if (currentItem.custom_fields.dp_video_code) {
+                var str = currentItem.custom_fields.dp_video_code.toString();
                 var str = str.replace('<script type="text/javascript" src="http://content.jwplatform.com/players/', '');
                 var justtheid = str.replace('-xHSncDUr.js"></script>', '');
                 $("#ytplayer").html('<iframe src="http://content.jwplatform.com/players/' + justtheid + '-xHSncDUr.html" width="480" height="270" frameborder="0" scrolling="auto"></iframe>');
-            } else if (currentItem._tern_wp_youtube_video) {
-                $("#ytplayer").html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + currentItem._tern_wp_youtube_video + '?autoplay=1&wmode=opaque&rel=0&showinfo=0&modestbranding=0" frameborder="0" allowfullscreen></iframe>');
+            } else if (currentItem.custom_fields._tern_wp_youtube_video) {
+                $("#ytplayer").html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + currentItem.custom_fields._tern_wp_youtube_video + '?autoplay=1&wmode=opaque&rel=0&showinfo=0&modestbranding=0" frameborder="0" allowfullscreen></iframe>');
             } else {
 				alert("error" + " " + currentItem);
 			}
+			$("#video_title").html(currentItem.title);
+			$("#video_desc").html(currentItem.content);
             $.mobile.navigate("#watch");
         };
 		
