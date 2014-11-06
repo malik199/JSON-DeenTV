@@ -3,7 +3,7 @@
     myApp.controller('DeenTv_Controller', ['$scope', '$http', function($scope, $http) {
 
         $scope.realTimeData;
-		var url = "http://deen.tv/?json=get_category_posts&slug=featured&count=50&status=publish&page=1&custom_fields=_tern_wp_youtube_video,dp_video_code";
+		var url = "http://deen.tv/?json=get_category_posts&slug=featured&count=50&status=publish&page=1&custom_fields=_tern_wp_youtube_video,dp_video_code,dp_video_url";
         //var url = "http://deen.tv/?json=get_category_posts&slug=featured&count=20&status=publish&page=1";
         url += "&callback=JSON_CALLBACK"
         
@@ -24,15 +24,32 @@
                 var str = currentItem.custom_fields.dp_video_code.toString();
                 var str = str.replace('<script type="text/javascript" src="http://content.jwplatform.com/players/', '');
                 var justtheid = str.replace('-xHSncDUr.js"></script>', '');
-                $("#ytplayer").html('<iframe src="http://content.jwplatform.com/players/' + justtheid + '-xHSncDUr.html" width="480" height="270" frameborder="0" scrolling="auto"></iframe>');
-            } else if (currentItem.custom_fields._tern_wp_youtube_video) {
-                $("#ytplayer").html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + currentItem.custom_fields._tern_wp_youtube_video + '?autoplay=1&wmode=opaque&rel=0&showinfo=0&modestbranding=0" frameborder="0" allowfullscreen></iframe>');
-            } else {
-				alert("error" + " " + currentItem);
+                $("#ytplayer").html('<iframe src="http://content.jwplatform.com/players/' + justtheid + '-xHSncDUr.html" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>');
+            	gotoWatchPage()
+			} else if (currentItem.custom_fields._tern_wp_youtube_video) {
+                $("#ytplayer").html('<iframe width="100%" height="100%" src="//www.youtube.com/embed/' + currentItem.custom_fields._tern_wp_youtube_video + '?autoplay=1&wmode=opaque&rel=0&showinfo=0&modestbranding=0" frameborder="0" allowfullscreen></iframe>');
+            	gotoWatchPage()
+			} else if (currentItem.custom_fields.dp_video_url){
+				var parsedID = getYoutubeID(currentItem.custom_fields.dp_video_url.toString());
+				$("#ytplayer").html('<iframe width="100%" height="100%" src="//www.youtube.com/embed/' + parsedID + '?autoplay=1&wmode=opaque&rel=0&showinfo=0&modestbranding=0" frameborder="0" allowfullscreen></iframe>');
+            	gotoWatchPage()
+			} else {
+				alert('There is an error with this video "' + currentItem.title + '"');
 			}
-			$("#video_title").html(currentItem.title);
-			$("#video_desc").html(currentItem.content);
-            $.mobile.navigate("#watch");
+			
+			function getYoutubeID(myurl){
+				var videoid = myurl.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+				if(videoid != null) {
+				   return videoid[1];
+				} else { 
+					alert("The youtube url is not valid.");
+				}
+			}
+			function gotoWatchPage(){
+				$("#video_title").html(currentItem.title);
+				$("#video_desc").html(currentItem.content);
+            	$.mobile.navigate("#watch");
+			}
         };
 		
 		$scope.getcategory = function(cat_Array){
@@ -51,6 +68,8 @@
 				return thecat;
 			}
 		}
+		
+		
     }]);
 
     //filter HTML
