@@ -141,7 +141,7 @@
 <style>
 /* font-faces */
 	
-	  @font-face {
+@font-face {
 	font-family: 'Oswald-Regular';
 	src: url('fonts/Oswald/Oswald-Regular.ttf') format('truetype');
 }
@@ -215,28 +215,27 @@ h2#video_title {
 	font-size: .8em;
 	color:#CCCCCC;
 }
-
 #list_videos {
-	height: 230px;
 	overflow:scroll;
 }
 </style>
 <head>
 <title>JavascriptTest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="http://static.ustream.tv/js/libs/ustream-embedapi.min.js"></script>
 <script src="js/truncate.js"></script>
 <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-sanitize.js"></script>-->
-
 <script src="js/app.js"></script>
 </head>
-<body ng-controller="DeenTv_Controller">
+<body id="body" ng-controller="DeenTv_Controller">
 <!-- Start of home page -->
 <div data-role="page" data-theme="b" id="home">
   <div role="main" class="ui-content">
-    <div id="logo_video">
+    <div id="logo_video_search">
       <div class="header">
         <div class="tagline">The Ummah's first online <br>
           entertainment network</div>
@@ -245,21 +244,20 @@ h2#video_title {
       <div class="video-container"><!--14351001-old 15274797-new-->
         <iframe id="UstreamIframe" src="http://www.ustream.tv/embed/15274797?ub=85a901&amp;lc=85a901&amp;oc=ffffff&amp;uc=ffffff&amp;v=3&amp;wmode=transparent" scrolling="no" frameborder="0" style="border: 0px none transparent;" width="100%"></iframe>
       </div>
-    </div>
-    <div class="ui-grid-a">
-    <!--  <div class="ui-block-a">
+    
+    <div class="ui-grid-a"> 
+      <!--  <div class="ui-block-a">
         <select ng-model="sortOrder">
           <option value="id" selected>Order by Most Recent</option>
           <option value="title">Order by Video Title</option>
           <option value="categories[0].title">Order by Show</option>
         </select>
       </div> -->
-
-        <div class="search">
-          <input ng-model="mySearch" placeholder="Search for Videos" autofocus>
-        </div>
-        
-    </div>
+      
+      <div class="search">
+        <input ng-model="mySearch" placeholder="Search for Videos" autofocus>
+      </div>
+    </div></div>
     <ul id="list_videos" data-role="listview" data-inset="true">
       <li ng-repeat="item in realTimeData | filter: mySearch | orderBy: sortOrder"><a ng-click="playvideo(item)"> <img ng-src="{{item.thumbnail}}" class="ui-li-thumb">
         <h2 class="list_title" ng-bind-html="item.title | unsafe "></h2>
@@ -271,11 +269,11 @@ h2#video_title {
   <!-- footer -->
   <div data-role="footer" data-position="fixed">
     <div data-role="navbar">
-      <ul>
-        <li><a href="#schedule" data-icon="calendar" data-theme="b">Schedule</a></li>
-        <li><a href="#about" data-icon="info" data-theme="b">About</a></li>
-        <li><a href="#" class="refresh" data-icon="refresh" data-theme="b">Refresh</a></li>
-        <li><a href="#home" data-icon="home" data-theme="b">Home</a></li>
+      <ul class="navigation">
+        <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
+        <li><a href="#schedule" data-icon="calendar" data-theme="b" class="schedule_link">Schedule</a></li>
+        <li><a href="#about" data-icon="info" data-theme="b" class="about_link">About</a></li>
+        <li><a href="#" class="refresh" data-icon="refresh" data-theme="b" class="refresh_link">Refresh</a></li>
       </ul>
     </div>
   </div>
@@ -293,23 +291,30 @@ h2#video_title {
     <div id="ytplayer" class="video-container"><!--<script type="text/javascript" src="http://content.jwplatform.com/players/7unyO9BE-xHSncDUr.js"></script>--></div>
     <div id="watch_text">
       <h2 id="video_title">Video Title</h2>
-      <span id="video_desc">Video Description</span> <span id="views"></span> </div>
+      <span id="video_desc">Video Description</span> <span id="views"></span>
+    </div>
+    <a href="#home" class="home_link ui-btn ui-btn-inline ui-icon-back ui-btn-icon-left">BACK</a>
   </div>
   <!-- footer -->
   <div data-role="footer" data-position="fixed">
     <div data-role="navbar">
-      <ul>
-        <li><a href="#schedule" data-icon="calendar" data-theme="b">Schedule</a></li>
-        <li><a href="#about" data-icon="info" data-theme="b">About</a></li>
-        <li><a href="#" class="refresh" data-icon="refresh" data-theme="b">Refresh</a></li>
-        <li><a href="#home" data-icon="home" data-theme="b">Home</a></li>
+      <ul class="navigation">
+        <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
+        <li><a href="#schedule" data-icon="calendar" data-theme="b" class="schedule_link">Schedule</a></li>
+        <li><a href="#about" data-icon="info" data-theme="b" class="about_link">About</a></li>
+        <li><a href="#" class="refresh" data-icon="refresh" data-theme="b" class="refresh_link">Refresh</a></li>
       </ul>
     </div>
   </div>
   <!-- /footer --> 
 </div>
 <!-- /watch video page -->
-
 </body>
+<script>
+	//THIS WILL STOP USTREAM FROM PLAYING
+	var viewer = UstreamEmbed('UstreamIframe');
+	$( "#list_videos, a" ).click(function() {
+		viewer.callMethod('stop');
+	});
+</script>
 </html>
-{{item.thumbnail_images['thumbnail'].url}}
