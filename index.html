@@ -218,6 +218,62 @@ h2#video_title {
 #list_videos {
 	overflow:scroll;
 }
+/* schedule */
+
+    
+td.schedule_hours {
+	width:28%;
+}
+#schedule_content {
+	position: relative;
+	width: 100%;
+	height: 300px;
+	overflow: hidden;
+	/* Prevent native touch events on Windows */
+	-ms-touch-action: none;
+	/* Prevent the callout on tap-hold and text selection */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	/* Prevent text resize on orientation change, useful for web-apps */
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+#schedule_content .scroller {
+	position: absolute;
+	/* Prevent elements to be highlighted on tap */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	/* Put the scroller into the HW Compositing layer right from the start */
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+}
+#schedule_content tr:nth-child(even) {
+	background: #e3e3e3
+}
+#schedule_content tr:nth-child(odd) {
+	background: #FFF
+}
+#schedule_content tr td {
+	font-size:80%;
+	padding:2px;
+}
+;
+img.about_img {
+	max-width:100%;
+	width:100%;
+}
+#about-content p, #about-content li {
+	text-transform: none;
+	text-align:justify;
+}
 </style>
 <head>
 <title>JavascriptTest</title>
@@ -231,9 +287,9 @@ h2#video_title {
 <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-sanitize.js"></script>-->
 <script src="js/app.js"></script>
 </head>
-<body id="body" ng-controller="DeenTv_Controller">
-<!-- Start of home page -->
-<div data-role="page" data-theme="b" id="home">
+<body id="body">
+<!-- Start of home page --------------------------------------->
+<div data-role="page" data-theme="b" id="home" ng-controller="DeenTv_Controller">
   <div role="main" class="ui-content">
     <div id="logo_video_search">
       <div class="header">
@@ -244,20 +300,20 @@ h2#video_title {
       <div class="video-container"><!--14351001-old 15274797-new-->
         <iframe id="UstreamIframe" src="http://www.ustream.tv/embed/15274797?ub=85a901&amp;lc=85a901&amp;oc=ffffff&amp;uc=ffffff&amp;v=3&amp;wmode=transparent" scrolling="no" frameborder="0" style="border: 0px none transparent;" width="100%"></iframe>
       </div>
-    
-    <div class="ui-grid-a"> 
-      <!--  <div class="ui-block-a">
+      <div class="ui-grid-a"> 
+        <!--  <div class="ui-block-a">
         <select ng-model="sortOrder">
           <option value="id" selected>Order by Most Recent</option>
           <option value="title">Order by Video Title</option>
           <option value="categories[0].title">Order by Show</option>
         </select>
       </div> -->
-      
-      <div class="search">
-        <input ng-model="mySearch" placeholder="Search for Videos" autofocus>
+        
+        <div class="search">
+          <input ng-model="mySearch" placeholder="Search for Videos" autofocus>
+        </div>
       </div>
-    </div></div>
+    </div>
     <ul id="list_videos" data-role="listview" data-inset="true">
       <li ng-repeat="item in realTimeData | filter: mySearch | orderBy: sortOrder"><a ng-click="playvideo(item)"> <img ng-src="{{item.thumbnail}}" class="ui-li-thumb">
         <h2 class="list_title" ng-bind-html="item.title | unsafe "></h2>
@@ -271,16 +327,16 @@ h2#video_title {
     <div data-role="navbar">
       <ul class="navigation">
         <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
-        <li><a href="#schedule" data-icon="calendar" data-theme="b" class="schedule_link">Schedule</a></li>
+        <li><a href="#shows" data-icon="bullets" data-theme="b" class="shows_link">Shows</a></li>
+        <li><a href="#schedule" data-icon="calendar" data-theme="b">Live Schedule</a></li>
         <li><a href="#about" data-icon="info" data-theme="b" class="about_link">About</a></li>
-        <li><a href="#" class="refresh" data-icon="refresh" data-theme="b" class="refresh_link">Refresh</a></li>
       </ul>
     </div>
   </div>
   <!-- /footer --> 
   <!-- /home page --> 
 </div>
-<!-- Start of watch video page -->
+<!-- Start of watch video page --------------------------------------->
 <div data-role="page" data-theme="b" id="watch">
   <div role="main" class="ui-content">
     <div class="header">
@@ -291,25 +347,143 @@ h2#video_title {
     <div id="ytplayer" class="video-container"><!--<script type="text/javascript" src="http://content.jwplatform.com/players/7unyO9BE-xHSncDUr.js"></script>--></div>
     <div id="watch_text">
       <h2 id="video_title">Video Title</h2>
-      <span id="video_desc">Video Description</span> <span id="views"></span>
+      <span id="video_desc">Video Description</span> <span id="views"></span> </div>
+    <a href="#home" class="home_link ui-btn ui-btn-inline ui-icon-back ui-btn-icon-left">BACK</a> </div>
+  <!-- footer -->
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul class="navigation">
+        <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
+        <li><a href="#shows" data-icon="bullets" data-theme="b" class="shows_link">Shows</a></li>
+        <li><a href="#schedule" data-icon="calendar" data-theme="b">Live Schedule</a></li>
+        <li><a href="#about" data-icon="info" data-theme="b" class="about_link">About</a></li>
+      </ul>
     </div>
-    <a href="#home" class="home_link ui-btn ui-btn-inline ui-icon-back ui-btn-icon-left">BACK</a>
+  </div>
+  <!-- /footer --> 
+</div>
+<!-- /watch video page --> 
+
+<!-- Start of about video page --------------------------------------->
+<div data-role="page" data-theme="b" id="about">
+  <div role="main" class="ui-content">
+    <div class="header">
+      <div class="tagline">The Ummah's first online <br>
+        entertainment network</div>
+      <div class="logo"><img src="img/DeenTV_darkbackLOGO.png" width="600" height="250" alt="DeenTV Logo"></div>
+    </div>
+    <div id="about-content"> <img class="about_img" width="100%" src="img/DEENTV-postcard-back.jpg" />
+      <p>Native Deen's DeenTV is the first 24/7 online  entertainment channel for Muslims. DeenTV airs the most popular halal videos from around the world. DeenTV is currently producing reality shows, documentaries, comedy and music videos that are focused on stories of Muslims living in modern society. <!--For more information or to get involved, contact us at <a href="mailto:info@deen.tv">info@deen.tv</a>--></p>
+      <ul style="display:none">
+        <li>To provide a 24/7 linear video channel with halal entertainment available worldwide via the internet.</li>
+        <li>To develop socially conscious programming acceptable by people of faith with the goal of creating a better world for humanity.</li>
+        <li>To provide a channel for professional, semi-professional and experienced amateur video producers to showcase their work on maintain belief in God while living in the West.</li>
+        <li>To allow Muslim actors, journalists, writers, etc. to develop their talents in a wholesome manner.</li>
+      </ul>
+    </div>
   </div>
   <!-- footer -->
   <div data-role="footer" data-position="fixed">
     <div data-role="navbar">
       <ul class="navigation">
         <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
-        <li><a href="#schedule" data-icon="calendar" data-theme="b" class="schedule_link">Schedule</a></li>
+        <li><a href="#shows" data-icon="bullets" data-theme="b" class="shows_link">Shows</a></li>
+        <li><a href="#schedule" data-icon="calendar" data-theme="b">Live Schedule</a></li>
         <li><a href="#about" data-icon="info" data-theme="b" class="about_link">About</a></li>
-        <li><a href="#" class="refresh" data-icon="refresh" data-theme="b" class="refresh_link">Refresh</a></li>
       </ul>
     </div>
   </div>
   <!-- /footer --> 
 </div>
-<!-- /watch video page -->
-</body>
+<!-- /page --> 
+
+<!-- Start of about video page --------------------------------------->
+<div data-role="page" data-theme="b" id="about">
+  <div role="main" class="ui-content">
+    <div class="header">
+      <div class="tagline">The Ummah's first online <br>
+        entertainment network</div>
+      <div class="logo"><img src="img/DeenTV_darkbackLOGO.png" width="600" height="250" alt="DeenTV Logo"></div>
+    </div>
+    <div id="about-content"> <img class="about_img" width="100%" src="img/DEENTV-postcard-back.jpg" />
+      <p>Native Deen's DeenTV is the first 24/7 online  entertainment channel for Muslims. DeenTV airs the most popular halal videos from around the world. DeenTV is currently producing reality shows, documentaries, comedy and music videos that are focused on stories of Muslims living in modern society. For more information or to get involved, contact us at <a href="mailto:info@deen.tv">info@deen.tv</a></p>
+      <ul style="display:none">
+        <li>To provide a 24/7 linear video channel with halal entertainment available worldwide via the internet.</li>
+        <li>To develop socially conscious programming acceptable by people of faith with the goal of creating a better world for humanity.</li>
+        <li>To provide a channel for professional, semi-professional and experienced amateur video producers to showcase their work on maintain belief in God while living in the West.</li>
+        <li>To allow Muslim actors, journalists, writers, etc. to develop their talents in a wholesome manner.</li>
+      </ul>
+    </div>
+  </div>
+  <!-- footer -->
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul class="navigation">
+        <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
+        <li><a href="#shows" data-icon="bullets" data-theme="b" class="shows_link">Shows</a></li>
+        <li><a href="#schedule" data-icon="calendar" data-theme="b">Live Schedule</a></li>
+        <li><a href="#about" data-icon="info" data-theme="b" class="about_link">About</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /footer --> 
+</div>
+<!-- /page --> 
+
+<!-- Start of shows page ------------------------------------->
+<div data-role="page" data-theme="b" id="shows">
+  <div role="main" class="ui-content">
+    <div class="header">
+      <div class="tagline">The Ummah's first online <br>
+        entertainment network</div>
+      <div class="logo"><img src="img/DeenTV_darkbackLOGO.png" width="600" height="250" alt="DeenTV Logo"></div>
+    </div>
+    <div id="show_content">
+    </div>
+    <!-- footer -->
+    <div data-role="footer" data-position="fixed">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
+          <li><a href="#shows" data-icon="calendar" data-theme="b" class="shows_link">Shows</a></li>
+          <li><a href="#schedule" data-icon="calendar" data-theme="b">Live Schedule</a></li>
+          <li><a href="#about" data-icon="info" data-theme="b" class="about_link">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- /footer --> 
+  </div>
+</div>
+<!-- /page --> 
+
+<!-- Start of schedule page --------------------------------------->
+<div data-role="page" data-theme="b" id="schedule">
+  <div role="main" class="ui-content">
+    <div class="header">
+      <div class="tagline">The Ummah's first online <br>
+        entertainment network</div>
+      <div class="logo"><img src="img/DeenTV_darkbackLOGO.png" width="600" height="250" alt="DeenTV Logo"></div>
+    </div>
+    <div id="schedule_content">
+      <div class="scroller">Schedule</div>
+    </div>
+    <!-- footer -->
+    <div data-role="footer" data-position="fixed">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
+          <li><a href="#shows" data-icon="calendar" data-theme="b" class="shows_link">Shows</a></li>
+          <li><a href="#schedule" data-icon="calendar" data-theme="b">Live Schedule</a></li>
+          <li><a href="#about" data-icon="info" data-theme="b" class="about_link">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- /footer --> 
+  </div>
+</div>
+<!-- /page --> 
+<script src="js/schedule.js"></script> 
+<script src="js/shows.js"></script> 
 <script>
 	//THIS WILL STOP USTREAM FROM PLAYING
 	var viewer = UstreamEmbed('UstreamIframe');
@@ -317,4 +491,5 @@ h2#video_title {
 		viewer.callMethod('stop');
 	});
 </script>
+</body>
 </html>
