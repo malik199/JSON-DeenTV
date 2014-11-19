@@ -1,280 +1,5 @@
 <!DOCTYPE HTML>
 <html ng-app="myApp">
-
-<!--<style>
-/* A bit custom styling */
-.my-page .ui-listview li .ui-btn p {
-    color: #c0c0c0;
-}
-.my-page .ui-listview li .ui-btn .ui-li-aside {
-    color: #eee;
-}
-/* First breakpoint is 48em (768px). 3 column layout. Tiles 250x250 pixels incl. margin at the breakpoint. */
-@media ( min-width: 48em ) {
-    .my-page .ui-content {
-        padding: .5625em; /* 9px */
-    }
-    .my-page .ui-listview li {
-        float: left;
-        width: 30.9333%; /* 33.3333% incl. 2 x 1.2% margin */
-        height: 14.5em; /* 232p */
-        margin: .5625em 1.2%;
-    }
-    .my-page .ui-listview li > .ui-btn {
-        -webkit-box-sizing: border-box; /* include padding and border in height so we can set it to 100% */
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        height: 100%;
-    }
-    .my-page .ui-listview li.ui-li-has-thumb .ui-li-thumb {
-        height: auto; /* To keep aspect ratio. */
-        max-width: 100%;
-        max-height: none;
-    }
-    /* Make all list items and anchors inherit the border-radius from the UL. */
-    .my-page .ui-listview li,
-    .my-page .ui-listview li .ui-btn,
-    .my-page .ui-listview .ui-li-thumb {
-        -webkit-border-radius: inherit;
-        border-radius: inherit;
-    }
-    /* Hide the icon */
-    .my-page .ui-listview .ui-btn-icon-right:after {
-        display: none;
-    }
-    /* Make text wrap. */
-    .my-page .ui-listview h2,
-    .my-page .ui-listview p {
-        white-space: normal;
-        overflow: visible;
-        position: absolute;
-        left: 0;
-        right: 0;
-    }
-    /* Text position */
-    .my-page .ui-listview h2 {
-        font-size: 1.25em;
-        margin: 0;
-        padding: .125em 1em;
-        bottom: 50%;
-    }
-    .my-page .ui-listview p {
-        font-size: 1em;
-        margin: 0;
-        padding: 0 1.25em;
-        min-height: 50%;
-        bottom: 0;
-    }
-    /* Semi transparent background and different position if there is a thumb. The button has overflow hidden so we don't need to set border-radius. */
-    .ui-listview .ui-li-has-thumb h2,
-    .ui-listview .ui-li-has-thumb p {
-        background: #111;
-        background: rgba(0,0,0,.8);
-    }
-    .ui-listview .ui-li-has-thumb h2 {
-        bottom: 35%;
-    }
-    .ui-listview .ui-li-has-thumb p {
-        min-height: 35%;
-    }
-    /* ui-li-aside has class .ui-li-desc as well so we have to override some things. */
-    .my-page .ui-listview .ui-li-aside {
-        padding: .125em .625em;
-        width: auto;
-        min-height: 0;
-        top: 0;
-        left: auto;
-        bottom: auto;
-        /* Custom styling. */
-        background: #990099;
-        background: rgba(153,0,153,.85);
-        -webkit-border-top-right-radius: inherit;
-        border-top-right-radius: inherit;
-        -webkit-border-bottom-left-radius: inherit;
-        border-bottom-left-radius: inherit;
-        -webkit-border-bottom-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-    /* If you want to add shadow, don't kill the focus style. */
-    .my-page .ui-listview li {
-        -moz-box-shadow: 0px 0px 9px #111;
-        -webkit-box-shadow: 0px 0px 9px #111;
-        box-shadow: 0px 0px 9px #111;
-    }
-    /* Images mask the hover bg color so we give desktop users feedback by applying the focus style on hover as well. */
-    .my-page .ui-listview li > .ui-btn:hover {
-        -moz-box-shadow: 0px 0px 12px #33ccff;
-        -webkit-box-shadow: 0px 0px 12px #33ccff;
-        box-shadow: 0px 0px 12px #33ccff;
-    }
-    /* Animate focus and hover style, and resizing. */
-    .my-page .ui-listview li,
-    .my-page .ui-listview .ui-btn {
-        -webkit-transition: all 500ms ease;
-        -moz-transition: all 500ms ease;
-        -o-transition: all 500ms ease;
-        -ms-transition: all 500ms ease;
-        transition: all 500ms ease;
-    }
-}
-/* Second breakpoint is 63.75em (1020px). 4 column layout. Tiles will be 250x250 pixels incl. margin again at the breakpoint. */
-@media ( min-width: 63.75em ) {
-    .my-page .ui-content {
-        padding: .625em; /* 10px */
-    }
-    /* Set a max-width for the last breakpoint to prevent too much stretching on large screens.
-    By setting the max-width equal to the breakpoint width minus padding we keep square tiles. */
-    .my-page .ui-listview {
-        max-width: 62.5em; /* 1000px */
-        margin: 0 auto;
-    }
-    /* Because of the 1000px max-width the width will always be 230px (and margin left/right 10px),
-    but we stick to percentage values for demo purposes. */
-    .my-page .ui-listview li {
-        width: 23%;
-        height: 230px;
-        margin: .625em 1%;
-    }
-}
-/* For this demo we used images with a size of 310x310 pixels. Just before the second breakpoint the images reach their max width: 1019px - 2 x 9px padding = 1001px x 30.9333% = ~310px */
-</style>-->
-<style>
-/* font-faces */
-	
-@font-face {
-	font-family: 'Oswald-Regular';
-	src: url('fonts/Oswald/Oswald-Regular.ttf') format('truetype');
-}
-@font-face {
-	font-family: 'Oswald-Light';
-	src: url('fonts/Oswald/Oswald-Light.ttf') format('truetype');
-}
-@font-face {
-	font-family: 'Oswald-Bold';
-	src: url('fonts/Oswald/Oswald-Bold.ttf') format('truetype');
-}
-/* home page */
-	
-.ui-listview .ui-li-aside {
-	position: absolute;
-	top: 0 !important;
-	right: 0 !important;
-	margin: 0;
-	background-color: #000;
-	padding: 2px 5px 2px 10px;
-	text-align: right;
-	color: #9F9;
-	border-radius: 0px 0px 0px 10px;
-	text-transform: uppercase;
-}
-.logo img {
-	width:30%;
-	height:30%;
-	padding-bottom:2%;
-}
-.tagline {
-	font-family: 'Oswald-Light', sans-serif;
-	font-size:.7em;
-	float:right;
-	width: 40%;
-	text-align:right;
-	margin-top:5px;
-	color:#84c1ff;
-}
-#ytplayer, .video-container {
-	position: relative;
-	padding-bottom: 56%;
-	/*padding-top: 20px;*/
-	height: 0;
-}
-#ytplayer iframe, .video-container iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-#list_videos {
-	margin-top:0px;
-}
-.list_title {
-	font-family: 'Oswald-Regular', sans-serif;
-	color:#FFF;
-}
-.list_desc {
-	font-family: 'Oswald-Light', sans-serif;
-	color:#CCCCCC;
-}
-/* Watch Page */
-	
-h2#video_title {
-	font-family: 'Oswald-Regular', sans-serif;
-	color: #FFF;
-}
-#video_desc {
-	font-size: .8em;
-	color:#CCCCCC;
-}
-#list_videos {
-	overflow:scroll;
-}
-/* schedule */
-
-    
-td.schedule_hours {
-	width:28%;
-}
-#schedule_content {
-	position: relative;
-	width: 100%;
-	height: 300px;
-	overflow: hidden;
-	/* Prevent native touch events on Windows */
-	-ms-touch-action: none;
-	/* Prevent the callout on tap-hold and text selection */
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	/* Prevent text resize on orientation change, useful for web-apps */
-	-webkit-text-size-adjust: none;
-	-moz-text-size-adjust: none;
-	-ms-text-size-adjust: none;
-	-o-text-size-adjust: none;
-	text-size-adjust: none;
-}
-#schedule_content .scroller {
-	position: absolute;
-	/* Prevent elements to be highlighted on tap */
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	/* Put the scroller into the HW Compositing layer right from the start */
-	-webkit-transform: translateZ(0);
-	-moz-transform: translateZ(0);
-	-ms-transform: translateZ(0);
-	-o-transform: translateZ(0);
-	transform: translateZ(0);
-}
-#schedule_content tr:nth-child(even) {
-	background: #e3e3e3
-}
-#schedule_content tr:nth-child(odd) {
-	background: #FFF
-}
-#schedule_content tr td {
-	font-size:80%;
-	padding:2px;
-}
-;
-img.about_img {
-	max-width:100%;
-	width:100%;
-}
-#about-content p, #about-content li {
-	text-transform: none;
-	text-align:justify;
-}
-</style>
 <head>
 <title>JavascriptTest</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -286,6 +11,10 @@ img.about_img {
 <script src="js/truncate.js"></script>
 <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-sanitize.js"></script>-->
 <script src="js/app.js"></script>
+<link rel="stylesheet" type="text/css" href="css/deentv.css">
+<link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+
 </head>
 <body id="body">
 <!-- Start of home page --------------------------------------->
@@ -295,7 +24,7 @@ img.about_img {
       <div class="header">
         <div class="tagline">The Ummah's first online <br>
           entertainment network</div>
-        <div class="logo"><img src="img/DeenTV_darkbackLOGO.png" width="600" height="250" alt="DeenTV Logo"></div>
+        <div class="logo"><img src="img/DeenTV_darkbackLOGO.png" alt="DeenTV Logo"></div>
       </div>
       <div class="video-container"><!--14351001-old 15274797-new-->
         <iframe id="UstreamIframe" src="http://www.ustream.tv/embed/15274797?ub=85a901&amp;lc=85a901&amp;oc=ffffff&amp;uc=ffffff&amp;v=3&amp;wmode=transparent" scrolling="no" frameborder="0" style="border: 0px none transparent;" width="100%"></iframe>
@@ -323,7 +52,7 @@ img.about_img {
     </ul>
   </div>
   <!-- footer -->
-  <div data-role="footer" data-position="fixed">
+  <div data-role="footer" data-position="fixed" class="footer">
     <div data-role="navbar">
       <ul class="navigation">
         <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
@@ -350,7 +79,7 @@ img.about_img {
       <span id="video_desc">Video Description</span> <span id="views"></span> </div>
     <a href="#home" class="home_link ui-btn ui-btn-inline ui-icon-back ui-btn-icon-left">BACK</a> </div>
   <!-- footer -->
-  <div data-role="footer" data-position="fixed">
+  <div data-role="footer" data-position="fixed" class="footer">
     <div data-role="navbar">
       <ul class="navigation">
         <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
@@ -383,7 +112,7 @@ img.about_img {
     </div>
   </div>
   <!-- footer -->
-  <div data-role="footer" data-position="fixed">
+  <div data-role="footer" data-position="fixed" class="footer">
     <div data-role="navbar">
       <ul class="navigation">
         <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
@@ -406,12 +135,13 @@ img.about_img {
       <div class="logo"><img src="img/DeenTV_darkbackLOGO.png" width="600" height="250" alt="DeenTV Logo"></div>
     </div>
     <div id="about-content"> <img class="about_img" width="100%" src="img/DEENTV-postcard-back.jpg" />
-      <p>Native Deen's DeenTV is the first 24/7 online  entertainment channel for Muslims. DeenTV airs the most popular halal videos from around the world. DeenTV is currently producing reality shows, documentaries, comedy and music videos that are focused on stories of Muslims living in modern society. For more information or to get involved, contact us at <a href="mailto:info@deen.tv">info@deen.tv</a></p>
-      <ul style="display:none">
-        <li>To provide a 24/7 linear video channel with halal entertainment available worldwide via the internet.</li>
-        <li>To develop socially conscious programming acceptable by people of faith with the goal of creating a better world for humanity.</li>
-        <li>To provide a channel for professional, semi-professional and experienced amateur video producers to showcase their work on maintain belief in God while living in the West.</li>
-        <li>To allow Muslim actors, journalists, writers, etc. to develop their talents in a wholesome manner.</li>
+      <p>Native Deen's DeenTV is the first 24/7 online  entertainment channel for Muslims. DeenTV airs the most popular halal videos from around the world. DeenTV is currently producing reality shows, documentaries, comedy and music videos that are focused on stories of Muslims living in modern society. For more information or to get involved, got to our website at <a href="www.deen.tv">www.deen.tv</a></p>
+      <p>Our goals include:</p>
+      <ul>
+        <li>Providing a 24/7 linear video channel with positive entertainment available worldwide via the internet.</li>
+        <li>Developing socially conscious programming acceptable by people of faith with the goal of creating a better world for humanity.</li>
+        <li>Creating a channel for professional, semi-professional and experienced amateur video producers to showcase their work on maintain belief in God while living in the West.</li>
+        <li>Allowing Muslim actors, journalists, writers, etc. to develop their talents in a wholesome manner.</li>
       </ul>
     </div>
   </div>
@@ -438,10 +168,11 @@ img.about_img {
         entertainment network</div>
       <div class="logo"><img src="img/DeenTV_darkbackLOGO.png" width="600" height="250" alt="DeenTV Logo"></div>
     </div>
-    <div id="show_content">
+    <div id="show_content" data-role="collapsibleset" data-theme="b" data-content-theme="b">
+
     </div>
     <!-- footer -->
-    <div data-role="footer" data-position="fixed">
+    <div data-role="footer" data-position="fixed" class="footer">
       <div data-role="navbar">
         <ul>
           <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>
@@ -468,7 +199,7 @@ img.about_img {
       <div class="scroller">Schedule</div>
     </div>
     <!-- footer -->
-    <div data-role="footer" data-position="fixed">
+    <div data-role="footer" data-position="fixed" class="footer">
       <div data-role="navbar">
         <ul>
           <li><a href="#home" data-icon="home" data-theme="b" class="home_link">Home</a></li>

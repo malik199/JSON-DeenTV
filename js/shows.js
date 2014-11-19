@@ -5,7 +5,7 @@ function getShow() {
 		var show_content = data.categories;
 		$.each(data.categories, function(i, item) {
 			if((item.id != 4) && (item.id != 44)){
-				$("#show_content").append("<span>" + item.title + "</span><br>");
+				$("#show_content").append('<div data-role="collapsible"><h3>'+item.title+'</h3><p>'+item.description+'</p>');
 			};
 		});
 	});

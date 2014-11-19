@@ -99,7 +99,11 @@ $( document ).ready(function() {
 	var padding = 16;
     var offset = p.offset();
 	var logo_video_search_height = Math.round($("#logo_video_search").height()); 
-	$("#list_videos").height($(window).height() - ((logo_video_search_height + (padding * 2)) + 56));
+	var just_logo_header = Math.round($(".logo").height()); 
+	var footer_height = $(".ui-footer").outerHeight();
+	$("#list_videos").height($(window).height() - ((logo_video_search_height + (padding * 2)) + footer_height));
+	$("#schedule_content, #about-content, #show_content").height($(window).height() - ((just_logo_header + (padding * 2)) + footer_height));
+	
 	//console.log( "left: " + offset.left + ", top: " + offset.top + "page height" + $(window).height() + "padding: " + padding + "top height: " + logo_video_search_height);
 	//console.log($(window).height() - ((logo_video_search_height + (padding * 2)) - 56));
 

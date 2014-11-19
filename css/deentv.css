@@ -1,0 +1,168 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* font-faces */
+	
+@font-face {
+	font-family: 'Oswald-Regular';
+	src: url('../fonts/Oswald/Oswald-Regular.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Oswald-Light';
+	src: url('../fonts/Oswald/Oswald-Light.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Oswald-Bold';
+	src: url('../fonts/Oswald/Oswald-Bold.ttf') format('truetype');
+}
+/* home page */
+	
+.ui-listview .ui-li-aside {
+	position: absolute;
+	top: 0 !important;
+	right: 0 !important;
+	margin: 0;
+	background-color: #000;
+	padding: 2px 5px 2px 10px;
+	text-align: right;
+	color: #9F9;
+	border-radius: 0px 0px 0px 10px;
+	text-transform: uppercase;
+}
+.logo img {
+	width:30%;
+	height:30%;
+	padding-bottom:2%;
+}
+.tagline {
+	font-family: 'Oswald-Light', sans-serif;
+	font-size:.7em;
+	float:right;
+	width: 40%;
+	text-align:right;
+	color:#84c1ff;
+	line-height: 1em;
+}
+#ytplayer, .video-container {
+	position: relative;
+	padding-bottom: 56%;
+	/*padding-top: 20px;*/
+	height: 0;
+}
+#ytplayer iframe, .video-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+#list_videos {
+	margin-top:0px;
+}
+.list_title {
+	font-family: 'Oswald-Regular', sans-serif;
+	color:#FFF;
+}
+.list_desc {
+	font-family: 'Oswald-Light', sans-serif;
+	color:#CCCCCC;
+}
+/* Watch Page */
+	
+h2#video_title {
+	font-family: 'Oswald-Regular', sans-serif;
+	color: #FFF;
+}
+#video_desc {
+	font-size: .8em;
+	color:#CCCCCC;
+}
+#list_videos {
+	overflow:scroll;
+}
+/* schedule */
+
+#schedule_content, #shows, #about {
+	font-family: 'Oswald-Light', sans-serif;
+}
+   
+td.schedule_hours {
+	width:28%;
+}
+#schedule_content {
+	position: relative;
+	width: 100%;
+	overflow: scroll;
+	/* Prevent native touch events on Windows */
+	-ms-touch-action: none;
+	/* Prevent the callout on tap-hold and text selection */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	/* Prevent text resize on orientation change, useful for web-apps */
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+#schedule_content .scroller {
+	position: absolute;
+	/* Prevent elements to be highlighted on tap */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	/* Put the scroller into the HW Compositing layer right from the start */
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+}
+#schedule_content tr:nth-child(even) {
+	background: #333;
+}
+#schedule_content tr:nth-child(odd) {
+	background: #505050;
+}
+#schedule_content tr td {
+	font-size:80%;
+	padding:2%;
+}
+
+#schedule .ui-content h2 {
+	color: #61FFA2
+}
+		
+#schedule_content table {
+	width: 100%;
+}
+
+img.about_img {
+	max-width:100%;
+	width:100%;
+}
+#about-content {
+	overflow: scroll;
+}
+
+#about-content p, #about-content li {
+	text-transform: none;
+	text-align:justify;
+}
+
+#schedule-form {
+	margin-bottom:10px
+}
+
+
+/* SHOW CONTENT */
+#show_content {
+	overflow:scroll;
+}
+
+
+#show_content ul {
+    padding: 0;
+    list-style-type: none;
+}
